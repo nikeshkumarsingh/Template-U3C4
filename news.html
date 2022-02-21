@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!--DO NOT CHANGE THIS ID's-->
+
+    <div id="container">
+      <div id="sidebar">
+        <!--add your sidebar component here-->
+      </div>
+
+      <div id="main">
+        <!--DO NOT CHANGE THIS ID's-->
+        <!--Show the clicked article in detailed format here ONLY-->
+      </div>
+    </div>
+  </body>
+</html>
+<script type="module" >
+ import sidebar from"../components/sidebar.js";
+
+let nav= document.getElementById("sidebar");
+nav.innerHTML=sidebar()
+
+ let data= JSON.parse(localStorage.getItem("article"));
+ console.log(data);
+ appendta(data);
+ function appendta(data){
+   data.forEach(function (data){
+     let div=document.createElement("div");
+     let image=document.createElement("img");
+     image.src=data.urlToImage;
+     let title=document.createElement("h3");
+        title.textContent=data.title;
+        let disc=document.createElement("p");
+        disc.textContent=data.description;
+        let cont=document.createElement("p");
+        cont.textContent=data.content;
+        let date=document.createElement("p");
+        date.textContent=data.publishedAt;
+        div.append(image,title,disc,cont,date);
+        document.getElementById("main").append(div)
+   })
+ }
+</script>
